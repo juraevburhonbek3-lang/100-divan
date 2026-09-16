@@ -5,13 +5,14 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const ORDERS_FILE = path.join(__dirname, 'orders.json');
 const REVIEWS_FILE = path.join(__dirname, '.data', 'reviews.json');
+const REVIEWS_EXAMPLE_FILE = path.join(__dirname, 'reviews.example.json');
 const REVIEW_LIMITS = { name: 80, text: 1000 };
 const reviewRequests = new Map();
 app.use(express.json({limit:'20kb'}));
 app.use(express.static(__dirname));
 function saveOrder(order){let a=[]; try{a=JSON.parse(fs.readFileSync(ORDERS_FILE,'utf8'));}catch{} a.push(order); fs.writeFileSync(ORDERS_FILE, JSON.stringify(a,null,2));}
 app.post('/api/orders',(req,res)=>{const {name,phone,model,size,color,comment}=req.body||{}; if(!name||!phone){return res.status(400).json({ok:false,error:'Имя и телефон обязательны'});} const order={id:Date.now().toString(),createdAt:new Date().toISOString(),name,phone,model:model||'',size:size||'',color:color||'',comment:comment||'',status:'new'}; saveOrder(order); res.json({ok:true,orderId:order.id});});
-function readReviews(){try{const reviews=JSON.parse(fs.readFileSync(REVIEWS_FILE,'utf8'));return Array.isArray(reviews)?reviews:[];}catch(error){if(error.code!=='ENOENT')console.error('Не удалось прочитать отзывы:',error.message);return[];}}
+function readReviews(){for(const file of [REVIEWS_FILE,REVIEWS_EXAMPLE_FILE]){try{const reviews=JSON.parse(fs.readFileSync(file,'utf8'));return Array.isArray(reviews)?reviews:[];}catch(error){if(error.code!=='ENOENT')console.error('Не удалось прочитать отзывы:',error.message);}}return[];}
 function saveReview(review){fs.mkdirSync(path.dirname(REVIEWS_FILE),{recursive:true});const temporaryFile=`${REVIEWS_FILE}.tmp`;fs.writeFileSync(temporaryFile,JSON.stringify([...readReviews(),review],null,2));fs.renameSync(temporaryFile,REVIEWS_FILE);}
 function cleanText(value){return typeof value==='string'?value.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g,'').trim():'';}
 function reviewRateLimit(ip){const now=Date.now();const recent=reviewRequests.get(ip)||[];const valid=recent.filter(time=>now-time<60*60*1000);if(valid.length>=5){reviewRequests.set(ip,valid);return false;}valid.push(now);reviewRequests.set(ip,valid);return true;}
