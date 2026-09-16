@@ -20,10 +20,11 @@ const products=[
  {name:'Кровать лофт',type:'Кровать',img:'new5.jpg',price:'Цена по запросу',size:'Уточняется',colors:'Уточняется'},
  {name:'Еврик прямой',type:'Диван',img:'new6.jpg',price:'Цена по запросу',size:'Уточняется',colors:'Уточняется'},
  {name:'Омега прямой',type:'Диван',img:'new7.jpg',price:'Цена по запросу',size:'Уточняется',colors:'Уточняется'},
- {name:'Тахта заборчик',type:'Тахта',img:'new8.jpg',price:'Цена по запросу',size:'Уточняется',colors:'Уточняется'}
+ {name:'Тахта заборчик',type:'Тахта',img:'new8.jpg',price:'Цена по запросу',size:'Уточняется',colors:'Уточняется'},
+ {name:'Доминго',type:'Прямой диван',category:'Диван',img:'domingo.jpg',price:'Уточняйте цену',size:'190 × 160 см',colors:'Уточняйте'}
 ];
 const grid=document.querySelector('#products'), select=document.querySelector('#modelSelect');
-function render(filter='all'){grid.innerHTML=products.filter(p=>filter==='all'||p.type===filter).map((p,i)=>`<article class="card"><div class="pic"><img src="assets/catalog/${p.img}" alt="${p.name}" loading="lazy"></div><div class="info"><span class="type">${p.type}</span><h3>${p.name}</h3><div class="price">${p.price}</div><div class="spec"><b>Размеры</b><span>${p.size}</span></div><div class="spec"><b>Цвета</b><span>${p.colors}</span></div><button class="more" data-i="${products.indexOf(p)}">Подробнее и заказать →</button></div></article>`).join('');
+function render(filter='all'){grid.innerHTML=products.filter(p=>filter==='all'||(p.category||p.type)===filter).map((p,i)=>`<article class="card"><div class="pic"><img src="assets/catalog/${p.img}" alt="${p.name}" loading="lazy"></div><div class="info"><span class="type">${p.type}</span><h3>${p.name}</h3><div class="price">${p.price}</div><div class="spec"><b>Размеры</b><span>${p.size}</span></div><div class="spec"><b>Цвета</b><span>${p.colors}</span></div><button class="more" data-i="${products.indexOf(p)}">Подробнее и заказать →</button></div></article>`).join('');
  grid.querySelectorAll('.more').forEach(b=>b.onclick=()=>openModal(products[b.dataset.i]));}
 select.innerHTML=products.map((p,i)=>`<option value="${p.name}">${p.name}</option>`).join('');
 render(); document.querySelectorAll('.filters button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.filters button').forEach(x=>x.classList.remove('active'));b.classList.add('active');render(b.dataset.filter)});
