@@ -7,6 +7,7 @@
 5. Сайт: http://localhost:3000
 6. При отправке формы POST /api/orders сохраняет заказ в orders.json.
 7. Отзывы отправляются через POST /api/reviews и сохраняются в .data/reviews.json со статусом pending. Если .data/reviews.json ещё не создан, сайт показывает одобренные демонстрационные отзывы из reviews.example.json. GET /api/reviews отдаёт только отзывы со статусом approved.
+8. После окончательного подтверждения домена замените `https://100divanof.com/` на фактический HTTPS-домен в `index.html` (canonical, Open Graph, Twitter и JSON-LD), `robots.txt` (Sitemap) и `sitemap.xml` (loc). Проверьте, что все эти URL совпадают.
 
 ВАЖНО: WHATSAPP_TOKEN и другие секреты нельзя помещать во фронтенд.
 Модерация отзывов: после запуска сервера откройте .data/reviews.json (он создаётся автоматически; исходный пример — reviews.example.json), проверьте отзыв и замените его status с "pending" на "approved". Удаляйте неподходящие записи или оставляйте им status "rejected". Файл находится вне публичного доступа; не добавляйте endpoint для одобрения.
