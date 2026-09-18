@@ -8,14 +8,6 @@
     "status": "approved"
   },
   {
-    "id": "review-seed-vlad-viktorovich",
-    "createdAt": null,
-    "name": "Влад Викторович",
-    "rating": 1,
-    "text": "История о потерянном времени. Не вздумайте обращаться в этот колхоз, тем более вносить предоплаты. Взяли предоплату 50 %, сроки поставки сорвали, кормили завтраками.",
-    "status": "approved"
-  },
-  {
     "id": "review-seed-andrey-tukshinkin",
     "createdAt": null,
     "name": "Андрей Тукшинкин",
