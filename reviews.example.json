@@ -8,14 +8,6 @@
     "status": "approved"
   },
   {
-    "id": "review-seed-ekaterina-romanova",
-    "createdAt": null,
-    "name": "Екатерина Романова",
-    "rating": 1,
-    "text": "Купили диван Сонтана. Поставили в гостиную, не спали и не разбирали его.",
-    "status": "approved"
-  },
-  {
     "id": "review-seed-vlad-viktorovich",
     "createdAt": null,
     "name": "Влад Викторович",
