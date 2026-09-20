@@ -25,7 +25,8 @@ const products=[
  {name:'Доминго',type:'Прямой диван',category:'Диван',img:'domingo.jpg',price:'Уточняйте цену',size:'190 × 160 см',colors:'Уточняйте'},
  {name:'Кровать Люкс',type:'Кровать',img:'bed-lux.jpg',price:'Уточняйте',size:'Уточняйте',colors:'Уточняйте'},
  {name:'Кровать Геометрия',type:'Кровать',img:'bed-geometry.jpg',price:'Уточняйте',size:'Уточняйте',colors:'Уточняйте'},
- {name:'Кухонный уголок',type:'Кухонный уголок',category:'Кухонный уголок',img:'kitchen-corner.jpg',price:'Уточняйте',size:'Уточняйте',colors:'Уточняйте'}
+ {name:'Кухонный уголок',type:'Кухонный уголок',category:'Кухонный уголок',img:'kitchen-corner.jpg',price:'Уточняйте',size:'Уточняйте',colors:'Уточняйте'},
+ {name:'Тахта',type:'Тахта',img:'tahta-blue.jpg',price:'Уточняйте',size:'Уточняйте',colors:'Синий, серый, бежевый и другие варианты'}
 ];
 const grid=document.querySelector('#products'), select=document.querySelector('#modelSelect');
 function productAlt(p){return `${p.name} — ${p.category || p.type}, мягкая мебель 100 ДИВАНОФЪ в Тюмени`;}
